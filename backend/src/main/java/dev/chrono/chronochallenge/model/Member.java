@@ -13,7 +13,6 @@ import java.util.Date;
 @Table
 public class Member {
 
-    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
