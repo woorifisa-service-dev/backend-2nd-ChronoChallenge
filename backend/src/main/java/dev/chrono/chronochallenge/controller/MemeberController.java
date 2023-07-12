@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 public
 
-@RestController
 @RequestMapping("/member")
+@RestController
 class MemeberController {
     private MemberService memberService;
     @GetMapping("/{memberId}")
