@@ -18,8 +18,11 @@ public class Quiz {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "correct_person")
+    @JoinColumn(name = "member_id")
     private Member member;
+
+    @Column
+    private String question;
 
     @Column
     private int answer;
@@ -42,16 +45,17 @@ public class Quiz {
     @Column
     private boolean status;
 
-    @Column(name="createdAt")
-    private Date created_at;
+    @Column(name="created_at")
+    private Date createdAt;
 
-    @Column(name="modifiedAt")
-    private Date modified_at;
+    @Column(name="modified_at")
+    private Date modifiedAt;
 
     @Builder
-    public Quiz(Long id, Member member, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, boolean status, Date created_at, Date modified_at) {
+    public Quiz(Long id, Member member, String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, boolean status, Date createdAt, Date modifiedAt) {
         this.id = id;
         this.member = member;
+        this.question = question;
         this.answer = answer;
         this.multipleCandidate1 = multipleCandidate1;
         this.multipleCandidate2 = multipleCandidate2;
@@ -59,7 +63,7 @@ public class Quiz {
         this.multipleCandidate4 = multipleCandidate4;
         this.point = point;
         this.status = status;
-        this.created_at = created_at;
-        this.modified_at = modified_at;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
     }
 }
