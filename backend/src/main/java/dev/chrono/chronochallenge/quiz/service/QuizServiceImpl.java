@@ -11,7 +11,7 @@ import java.util.List;
 public class QuizServiceImpl implements QuizService{
 
     private final QuizRepository quizRepository;
-    
+
     public QuizServiceImpl(QuizRepository quizRepository) {
         this.quizRepository = quizRepository;
     }
@@ -31,10 +31,6 @@ public class QuizServiceImpl implements QuizService{
         return quizRepository.save(quiz);
     }
 
-    @Override
-    public void delete(Quiz quiz) {
-
-    }
 
     @Override
     public void deleteById(Long id) {
