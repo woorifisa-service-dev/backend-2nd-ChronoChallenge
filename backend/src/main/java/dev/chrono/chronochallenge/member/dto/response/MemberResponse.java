@@ -1,6 +1,6 @@
-package dev.chrono.chronochallenge.dto.response;
+package dev.chrono.chronochallenge.member.dto.response;
 
-import dev.chrono.chronochallenge.model.Member;
+import dev.chrono.chronochallenge.member.model.Member;
 
 public class MemberResponse {
 

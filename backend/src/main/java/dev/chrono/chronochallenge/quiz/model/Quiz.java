@@ -1,8 +1,11 @@
-package dev.chrono.chronochallenge.model;
+package dev.chrono.chronochallenge.quiz.model;
 
+import dev.chrono.chronochallenge.member.model.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -36,7 +39,7 @@ public class Quiz {
     @Column(name="multiple_candidate3")
     private String multipleCandidate3;
 
-    @Column(name="multiple_candidate4")
+    @Column(name = "multiple_candidate4")
     private String multipleCandidate4;
 
     @Column
@@ -45,10 +48,12 @@ public class Quiz {
     @Column
     private boolean status;
 
-    @Column(name="created_at")
+    @CreatedDate
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name="modified_at")
+    @LastModifiedDate
+    @Column(name = "modified_at")
     private Date modifiedAt;
 
     @Builder
