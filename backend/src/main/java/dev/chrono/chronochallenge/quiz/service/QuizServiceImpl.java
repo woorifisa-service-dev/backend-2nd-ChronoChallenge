@@ -11,8 +11,7 @@ import java.util.List;
 public class QuizServiceImpl implements QuizService{
 
     private final QuizRepository quizRepository;
-
-    @Autowired
+    
     public QuizServiceImpl(QuizRepository quizRepository) {
         this.quizRepository = quizRepository;
     }

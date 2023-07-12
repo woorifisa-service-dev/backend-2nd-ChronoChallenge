@@ -19,7 +19,6 @@ public class QuizController {
 
     private final QuizService quizService;
 
-    @Autowired
     public QuizController(QuizService quizService) {
         this.quizService = quizService;
     }
