@@ -1,18 +1,30 @@
 package dev.chrono.chronochallenge.service;
 
 import dev.chrono.chronochallenge.model.Quiz;
+import dev.chrono.chronochallenge.repository.QuizRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class QuizServiceImpl implements QuizService{
-    @Override
-    public List<Quiz> findAll() {
-        return null;
+
+    private final QuizRepository quizRepository;
+
+    @Autowired
+    public QuizServiceImpl(QuizRepository quizRepository) {
+        this.quizRepository = quizRepository;
     }
 
     @Override
-    public Quiz findById(Long aLong) {
-        return null;
+    public List<Quiz> findAll() {
+        return quizRepository.findAll();
+    }
+
+    @Override
+    public Quiz findById(Long id) {
+        return quizRepository.findById(id).orElse(null);
     }
 
     @Override
