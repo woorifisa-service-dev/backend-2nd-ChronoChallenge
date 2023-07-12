@@ -23,7 +23,7 @@ public class QuizController {
         this.quizService = quizService;
     }
 
-    @GetMapping()
+    @GetMapping
     public List<QuizResponse> getQuizList(){
         return quizService.findAll()
                 .stream()
