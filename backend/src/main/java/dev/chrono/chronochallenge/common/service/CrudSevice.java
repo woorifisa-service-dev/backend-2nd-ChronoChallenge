@@ -1,4 +1,4 @@
-package dev.chrono.chronochallenge.member.service;
+package dev.chrono.chronochallenge.common.service;
 
 import java.util.List;
 
