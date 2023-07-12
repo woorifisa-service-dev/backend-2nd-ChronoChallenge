@@ -3,6 +3,7 @@ package dev.chrono.chronochallenge.model;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,19 +18,22 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(length = 20,nullable = false)
     private String name;
 
-    @Column
+    @Column(length = 20,nullable = false)
     private int password;
 
-    @Column
+    @Column(nullable = false)
+    @ColumnDefault("false")
     private boolean authority;
 
     @Column
+    @ColumnDefault("0")
     private int point;
 
     @Column(name = "pass_ticket")
+    @ColumnDefault("0")
     private int passTicket;
 
     @Builder
