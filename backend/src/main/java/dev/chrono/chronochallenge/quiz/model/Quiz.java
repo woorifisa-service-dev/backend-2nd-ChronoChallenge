@@ -1,6 +1,7 @@
 package dev.chrono.chronochallenge.quiz.model;
 
 import dev.chrono.chronochallenge.member.model.Member;
+import dev.chrono.chronochallenge.quiz.dto.rquest.QuizRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -70,5 +71,16 @@ public class Quiz {
         this.status = status;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+    }
+
+    public void update(QuizRequest quizRequest){
+        this.question = quizRequest.getQuestion();
+        this.answer = quizRequest.getAnswer();
+        this.multipleCandidate1 = quizRequest.getMultipleCandidate1();
+        this.multipleCandidate2 = quizRequest.getMultipleCandidate2();
+        this.multipleCandidate3 = quizRequest.getMultipleCandidate3();
+        this.multipleCandidate4 = quizRequest.getMultipleCandidate4();
+        this.point = quizRequest.getPoint();
+        this.status = quizRequest.isStatus();
     }
 }

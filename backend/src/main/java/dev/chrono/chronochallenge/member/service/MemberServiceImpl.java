@@ -31,11 +31,6 @@ public class MemberServiceImpl implements dev.chrono.chronochallenge.member.serv
     }
 
     @Override
-    public void delete(Member member) {
-        memberRepository.delete(member);
-    }
-
-    @Override
     public void deleteById(Long id) {
         memberRepository.deleteById(id);
     }
