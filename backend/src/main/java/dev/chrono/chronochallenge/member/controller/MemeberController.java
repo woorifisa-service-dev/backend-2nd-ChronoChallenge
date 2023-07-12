@@ -1,14 +1,11 @@
-package dev.chrono.chronochallenge.controller;
+package dev.chrono.chronochallenge.member.controller;
 
-import dev.chrono.chronochallenge.dto.response.MemberResponse;
-import dev.chrono.chronochallenge.model.Member;
-import dev.chrono.chronochallenge.service.MemberService;
+import dev.chrono.chronochallenge.member.dto.response.MemberResponse;
+import dev.chrono.chronochallenge.member.model.Member;
+import dev.chrono.chronochallenge.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 public
 
@@ -25,4 +22,5 @@ class MemeberController {
             return new ResponseEntity<>(MemberResponse.studentInfoFrom(member), HttpStatus.OK);
         }
     }
+    
 }
