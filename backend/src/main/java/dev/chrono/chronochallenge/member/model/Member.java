@@ -21,7 +21,7 @@ public class Member {
     private String name;
 
     @Column(length = 20,nullable = false)
-    private int password;
+    private String password;
 
     @Column(nullable = false)
     @ColumnDefault("false")
@@ -36,7 +36,7 @@ public class Member {
     private int passTicket;
 
     @Builder
-    public Member(Long id, String name, int password, boolean authority, int point, int passTicket) {
+    public Member(Long id, String name, String password, boolean authority, int point, int passTicket) {
         this.id = id;
         this.name = name;
         this.password = password;
