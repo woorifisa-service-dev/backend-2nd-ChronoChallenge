@@ -7,6 +7,7 @@ import dev.chrono.chronochallenge.quiz.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +43,16 @@ public class QuizController {
         Quiz quiz = QuizRequest.toQuiz(quizRequest);
         Quiz saveQuiz = quizService.save(quiz);
         QuizResponse quizResponse = QuizResponse.From(saveQuiz);
+        return ResponseEntity.status(HttpStatus.OK).body(quizResponse);
+    }
+
+    @Transactional
+    @PutMapping("/{id}")
+    public ResponseEntity<QuizResponse> updateQuiz(@PathVariable Long id, @RequestBody QuizRequest quizRequest){
+        Quiz quiz = quizService.findById(id);
+        quiz.update(quizRequest);
+        QuizResponse quizResponse = QuizResponse.From(quiz);
+
         return ResponseEntity.status(HttpStatus.OK).body(quizResponse);
     }
 
