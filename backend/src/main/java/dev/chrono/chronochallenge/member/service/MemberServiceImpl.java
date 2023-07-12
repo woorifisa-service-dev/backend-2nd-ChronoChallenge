@@ -11,6 +11,10 @@ public class MemberServiceImpl implements dev.chrono.chronochallenge.member.serv
 
     private MemberRepository memberRepository;
 
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
     @Override
     public List<Member> findAll() {
         return memberRepository.findAll();

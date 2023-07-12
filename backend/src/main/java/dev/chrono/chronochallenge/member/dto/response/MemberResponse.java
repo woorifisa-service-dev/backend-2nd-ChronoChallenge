@@ -1,7 +1,9 @@
 package dev.chrono.chronochallenge.member.dto.response;
 
 import dev.chrono.chronochallenge.member.model.Member;
+import lombok.Getter;
 
+@Getter
 public class MemberResponse {
 
     private String name;

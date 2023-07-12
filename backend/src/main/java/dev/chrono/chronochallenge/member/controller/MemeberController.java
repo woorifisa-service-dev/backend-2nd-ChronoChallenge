@@ -13,6 +13,11 @@ public
 @RestController
 class MemeberController {
     private MemberService memberService;
+
+    public MemeberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
     @GetMapping("/{memberId}")
     public ResponseEntity<MemberResponse> showMemberInfo(@PathVariable Long memberId) {
         Member member = memberService.findById(memberId);
