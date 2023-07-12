@@ -56,5 +56,13 @@ public class QuizController {
         return ResponseEntity.status(HttpStatus.OK).body(quizResponse);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<QuizResponse> deleteQuiz(@PathVariable Long id){
+        QuizResponse quiz = QuizResponse.From(quizService.findById(id));
+        quizService.deleteById(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(quiz);
+    }
+
 }
 
