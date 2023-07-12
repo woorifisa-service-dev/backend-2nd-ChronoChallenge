@@ -1,6 +1,6 @@
 package dev.chrono.chronochallenge.controller;
 
-import dev.chrono.chronochallenge.dto.MemberResponse;
+import dev.chrono.chronochallenge.dto.response.MemberResponse;
 import dev.chrono.chronochallenge.model.Member;
 import dev.chrono.chronochallenge.service.MemberService;
 import org.springframework.http.HttpStatus;

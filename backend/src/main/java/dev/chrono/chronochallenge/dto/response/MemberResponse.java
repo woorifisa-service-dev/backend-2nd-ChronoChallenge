@@ -1,4 +1,4 @@
-package dev.chrono.chronochallenge.dto;
+package dev.chrono.chronochallenge.dto.response;
 
 import dev.chrono.chronochallenge.model.Member;
 
@@ -19,14 +19,10 @@ public class MemberResponse {
     }
 
     public static MemberResponse studentInfoFrom(Member member) {
-        final String name = member.getName();
-        final int point = member.getPoint();
-        final int passTicket = member.getPassTicket();
-        return new MemberResponse(name, point, passTicket);
+        return new MemberResponse(member.getName(), member.getPoint(), member.getPassTicket());
     }
 
     public static MemberResponse teacherInfoFrom(Member member) {
-        final String name = member.getName();
-        return new MemberResponse(name);
+        return new MemberResponse(member.getName());
     }
 }
