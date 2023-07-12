@@ -1,9 +1,9 @@
-package dev.chrono.chronochallenge.controller;
+package dev.chrono.chronochallenge.quiz.controller;
 
-import dev.chrono.chronochallenge.dto.response.QuizResponse;
-import dev.chrono.chronochallenge.dto.rquest.QuizRequest;
-import dev.chrono.chronochallenge.model.Quiz;
-import dev.chrono.chronochallenge.service.QuizService;
+import dev.chrono.chronochallenge.quiz.dto.response.QuizResponse;
+import dev.chrono.chronochallenge.quiz.dto.rquest.QuizRequest;
+import dev.chrono.chronochallenge.quiz.model.Quiz;
+import dev.chrono.chronochallenge.quiz.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

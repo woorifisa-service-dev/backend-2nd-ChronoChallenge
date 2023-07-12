@@ -1,7 +1,7 @@
-package dev.chrono.chronochallenge.service;
+package dev.chrono.chronochallenge.quiz.service;
 
-import dev.chrono.chronochallenge.model.Quiz;
-import dev.chrono.chronochallenge.repository.QuizRepository;
+import dev.chrono.chronochallenge.quiz.model.Quiz;
+import dev.chrono.chronochallenge.quiz.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

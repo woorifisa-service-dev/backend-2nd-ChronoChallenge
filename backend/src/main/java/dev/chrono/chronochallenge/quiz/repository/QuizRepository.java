@@ -1,6 +1,6 @@
-package dev.chrono.chronochallenge.repository;
+package dev.chrono.chronochallenge.quiz.repository;
 
-import dev.chrono.chronochallenge.model.Quiz;
+import dev.chrono.chronochallenge.quiz.model.Quiz;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

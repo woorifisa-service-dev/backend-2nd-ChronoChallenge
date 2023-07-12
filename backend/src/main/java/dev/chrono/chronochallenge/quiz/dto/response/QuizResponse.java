@@ -1,14 +1,8 @@
-package dev.chrono.chronochallenge.dto.response;
+package dev.chrono.chronochallenge.quiz.dto.response;
 
-import dev.chrono.chronochallenge.model.Member;
-import dev.chrono.chronochallenge.model.Quiz;
+import dev.chrono.chronochallenge.quiz.model.Quiz;
 import lombok.Builder;
 import lombok.Getter;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import java.util.Date;
 
 @Getter
 public class QuizResponse {

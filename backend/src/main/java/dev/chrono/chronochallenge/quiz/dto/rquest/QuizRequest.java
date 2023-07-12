@@ -1,6 +1,6 @@
-package dev.chrono.chronochallenge.dto.rquest;
+package dev.chrono.chronochallenge.quiz.dto.rquest;
 
-import dev.chrono.chronochallenge.model.Quiz;
+import dev.chrono.chronochallenge.quiz.model.Quiz;
 import lombok.Builder;
 import lombok.Getter;
 
