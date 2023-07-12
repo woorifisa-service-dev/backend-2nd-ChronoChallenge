@@ -1,13 +1,13 @@
-package dev.chrono.chronochallenge.service;
+package dev.chrono.chronochallenge.member.service;
 
-import dev.chrono.chronochallenge.model.Member;
-import dev.chrono.chronochallenge.repository.MemberRepository;
+import dev.chrono.chronochallenge.member.model.Member;
+import dev.chrono.chronochallenge.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class MemberServiceImpl implements dev.chrono.chronochallenge.member.service.MemberService {
 
     private MemberRepository memberRepository;
 
