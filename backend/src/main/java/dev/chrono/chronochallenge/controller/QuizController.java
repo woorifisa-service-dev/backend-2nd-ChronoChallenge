@@ -1,13 +1,13 @@
 package dev.chrono.chronochallenge.controller;
 
 import dev.chrono.chronochallenge.dto.response.QuizResponse;
+import dev.chrono.chronochallenge.dto.rquest.QuizRequest;
 import dev.chrono.chronochallenge.model.Quiz;
 import dev.chrono.chronochallenge.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +35,14 @@ public class QuizController {
     public QuizResponse getQuiz(@PathVariable Long id){
         Quiz quiz = quizService.findById(id);
         return QuizResponse.From(quiz);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<QuizResponse> saveQuiz(@RequestBody QuizRequest quizRequest){
+        Quiz quiz = QuizRequest.toQuiz(quizRequest);
+        Quiz saveQuiz = quizService.save(quiz);
+        QuizResponse quizResponse = QuizResponse.From(saveQuiz);
+        return ResponseEntity.status(HttpStatus.OK).body(quizResponse);
     }
 
 }

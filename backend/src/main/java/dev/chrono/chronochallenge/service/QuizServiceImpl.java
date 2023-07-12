@@ -29,7 +29,7 @@ public class QuizServiceImpl implements QuizService{
 
     @Override
     public Quiz save(Quiz quiz) {
-        return null;
+        return quizRepository.save(quiz);
     }
 
     @Override
