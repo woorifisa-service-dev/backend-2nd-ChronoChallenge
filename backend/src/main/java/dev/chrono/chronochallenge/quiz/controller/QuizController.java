@@ -3,6 +3,7 @@ package dev.chrono.chronochallenge.quiz.controller;
 import dev.chrono.chronochallenge.quiz.dto.response.QuizResponse;
 import dev.chrono.chronochallenge.quiz.dto.rquest.QuizRequest;
 import dev.chrono.chronochallenge.quiz.model.Quiz;
+import dev.chrono.chronochallenge.quiz.model.QuizStatus;
 import dev.chrono.chronochallenge.quiz.service.QuizService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -41,6 +42,17 @@ public class QuizController {
     ){
         Quiz quiz = quizService.findById(id);
         return QuizResponse.From(quiz);
+    }
+
+    @ApiOperation(value = "활성화된 퀴즈 조회")
+    @GetMapping("/submit")
+    public List<QuizResponse> getSubmitQuizList(){
+
+        return quizService.findByStatus(QuizStatus.SUBMIT)
+                .stream()
+                .map(QuizResponse::From)
+                .collect(Collectors.toList());
+
     }
 
     @ApiOperation(value = "퀴즈 추가")
