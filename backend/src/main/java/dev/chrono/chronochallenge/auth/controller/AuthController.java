@@ -2,7 +2,7 @@ package dev.chrono.chronochallenge.auth.controller;
 
 
 import dev.chrono.chronochallenge.auth.dto.AuthInfo;
-import dev.chrono.chronochallenge.auth.dto.MessageResponse;
+import dev.chrono.chronochallenge.common.dto.MessageResponse;
 import dev.chrono.chronochallenge.auth.dto.request.LoginRequest;
 import dev.chrono.chronochallenge.auth.service.AuthService;
 import org.springframework.http.HttpStatus;

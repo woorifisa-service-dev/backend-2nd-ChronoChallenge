@@ -1,4 +1,4 @@
-package dev.chrono.chronochallenge.auth.dto;
+package dev.chrono.chronochallenge.common.dto;
 
 import lombok.Builder;
 import lombok.Getter;

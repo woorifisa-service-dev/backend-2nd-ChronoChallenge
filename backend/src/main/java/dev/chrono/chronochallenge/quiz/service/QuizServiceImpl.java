@@ -1,5 +1,6 @@
 package dev.chrono.chronochallenge.quiz.service;
 
+import dev.chrono.chronochallenge.member.model.Member;
 import dev.chrono.chronochallenge.quiz.model.Quiz;
 import dev.chrono.chronochallenge.quiz.model.QuizStatus;
 import dev.chrono.chronochallenge.quiz.repository.QuizRepository;
@@ -41,5 +42,9 @@ public class QuizServiceImpl implements QuizService{
     @Override
     public void deleteById(Long id) {
         quizRepository.deleteById(id);
+    }
+
+    public void updateStatusAndAnswerMember(Quiz quiz, QuizStatus quizStatus, Member answerMember) {
+        quiz.updateStatusAndAnswerMember(quizStatus, answerMember);
     }
 }

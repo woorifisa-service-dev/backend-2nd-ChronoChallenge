@@ -5,4 +5,5 @@ import dev.chrono.chronochallenge.member.model.Member;
 
 public interface MemberService extends CrudService<Member, Long> {
 
+    void updatePoint(Member member, int point, int passTicket);
 }

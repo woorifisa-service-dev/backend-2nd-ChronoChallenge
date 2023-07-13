@@ -35,5 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
-
 .idea
+
+
+## application.properties ##
+application-local.properties

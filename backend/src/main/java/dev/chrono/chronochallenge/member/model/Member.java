@@ -44,6 +44,11 @@ public class Member {
         this.point = point;
         this.passTicket = passTicket;
     }
+
+    public void updatePoint(int point, int passTicket){
+        this.point = point;
+        this.passTicket = passTicket;
+    }
 }
 
 
