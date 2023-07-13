@@ -11,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Getter
 @Entity
 @NoArgsConstructor
@@ -47,7 +48,7 @@ public class Quiz {
     private int point;
 
     @Column
-    private boolean status;
+    private QuizStatus status;
 
     @CreatedDate
     @Column(name = "created_at")
@@ -57,8 +58,9 @@ public class Quiz {
     @Column(name = "modified_at")
     private Date modifiedAt;
 
+
     @Builder
-    public Quiz(Long id, Member member, String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, boolean status, Date createdAt, Date modifiedAt) {
+    public Quiz(Long id, Member member, String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, QuizStatus status, Date createdAt, Date modifiedAt) {
         this.id = id;
         this.member = member;
         this.question = question;
@@ -81,6 +83,6 @@ public class Quiz {
         this.multipleCandidate3 = quizRequest.getMultipleCandidate3();
         this.multipleCandidate4 = quizRequest.getMultipleCandidate4();
         this.point = quizRequest.getPoint();
-        this.status = quizRequest.isStatus();
+        this.status = quizRequest.getStatus();
     }
 }

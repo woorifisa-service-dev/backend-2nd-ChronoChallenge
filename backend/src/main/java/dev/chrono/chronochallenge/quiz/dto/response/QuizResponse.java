@@ -1,6 +1,7 @@
 package dev.chrono.chronochallenge.quiz.dto.response;
 
 import dev.chrono.chronochallenge.quiz.model.Quiz;
+import dev.chrono.chronochallenge.quiz.model.QuizStatus;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -14,10 +15,10 @@ public class QuizResponse {
     private String multipleCandidate3;
     private String multipleCandidate4;
     private int point;
-    private boolean status;
+    private QuizStatus status;
 
     @Builder
-    public QuizResponse(String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, boolean status) {
+    public QuizResponse(String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, QuizStatus status) {
         this.question = question;
         this.answer = answer;
         this.multipleCandidate1 = multipleCandidate1;
@@ -37,7 +38,7 @@ public class QuizResponse {
                 .multipleCandidate3(quiz.getMultipleCandidate3())
                 .multipleCandidate4(quiz.getMultipleCandidate4())
                 .point(quiz.getPoint())
-                .status(quiz.isStatus())
+                .status(quiz.getStatus())
                 .build();
     }
 }
