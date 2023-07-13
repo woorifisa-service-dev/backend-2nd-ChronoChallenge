@@ -1,6 +1,7 @@
 package dev.chrono.chronochallenge.quiz.service;
 
 import dev.chrono.chronochallenge.quiz.model.Quiz;
+import dev.chrono.chronochallenge.quiz.model.QuizStatus;
 import dev.chrono.chronochallenge.quiz.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,11 @@ public class QuizServiceImpl implements QuizService{
     @Override
     public Quiz findById(Long id) {
         return quizRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Quiz> findByStatus(QuizStatus quizStatus) {
+        return quizRepository.findByStatus(quizStatus);
     }
 
     @Override
