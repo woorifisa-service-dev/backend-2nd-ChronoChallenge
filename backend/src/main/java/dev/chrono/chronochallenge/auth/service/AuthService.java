@@ -1,12 +1,14 @@
 package dev.chrono.chronochallenge.auth.service;
 
 import dev.chrono.chronochallenge.auth.dto.AuthInfo;
+import dev.chrono.chronochallenge.auth.dto.MessageResponse;
 import dev.chrono.chronochallenge.auth.dto.request.LoginRequest;
 import dev.chrono.chronochallenge.auth.exception.LoginFailedException;
 import dev.chrono.chronochallenge.member.model.Member;
 import dev.chrono.chronochallenge.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Service
@@ -25,6 +27,28 @@ public class AuthService {
         String password = loginRequest.getPassword();
         Member member = memberRepository.findByNameAndPassword(name, password).orElseThrow(LoginFailedException::new);
         return new AuthInfo(member.getId(),member.getName());
+    }
+
+    public MessageResponse loginCheck(HttpSession session) {
+
+        MessageResponse messageResponse;
+
+        if(null == session.getAttribute("memberId")) {
+            messageResponse = MessageResponse
+                    .builder()
+                    .message("로그인 상태가 아닙니다.")
+                    .code(0)
+                    .build();
+        } else {
+            AuthInfo authInfo = (AuthInfo) session.getValue("memberId");
+            messageResponse = MessageResponse
+                    .builder()
+                    .message(authInfo.getName() + "님이 로그인한 상태입니다.")
+                    .code(1)
+                    .build();
+        }
+
+        return messageResponse;
     }
 
 }
