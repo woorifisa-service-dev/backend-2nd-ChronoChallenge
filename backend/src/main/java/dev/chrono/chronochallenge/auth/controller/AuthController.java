@@ -2,6 +2,7 @@ package dev.chrono.chronochallenge.auth.controller;
 
 
 import dev.chrono.chronochallenge.auth.dto.AuthInfo;
+import dev.chrono.chronochallenge.auth.dto.MessageResponse;
 import dev.chrono.chronochallenge.auth.dto.request.LoginRequest;
 import dev.chrono.chronochallenge.auth.service.AuthService;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,13 @@ public class AuthController {
         AuthInfo authInfo = (AuthInfo) session.getValue("memberId");
         System.out.println(authInfo.getName() + "로그아웃");
         session.invalidate();
+    }
+
+    @GetMapping("/login_check")
+    public ResponseEntity<MessageResponse> loginCheck(HttpSession session) {
+        MessageResponse messageResponse = authService.loginCheck(session);
+
+        return ResponseEntity.status(HttpStatus.OK).body(messageResponse);
     }
 
 }
