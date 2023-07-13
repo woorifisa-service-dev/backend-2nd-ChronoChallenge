@@ -22,6 +22,8 @@ public class LoginRequest {
     @Size(min = 1, max = 20)
     private String password;
 
+
+
     public LoginRequest(String name, String password) {
         this.name = name;
         this.password = password;

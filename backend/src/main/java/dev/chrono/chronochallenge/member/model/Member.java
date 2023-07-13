@@ -35,6 +35,9 @@ public class Member {
     @ColumnDefault("0")
     private int passTicket;
 
+
+
+
     @Builder
     public Member(Long id, String name, String password, boolean authority, int point, int passTicket) {
         this.id = id;

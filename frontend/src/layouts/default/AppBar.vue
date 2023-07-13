@@ -12,6 +12,7 @@
         icon="mdi-account"
         size="x-small"
         @click="handleClickAccount"
+
       ></v-btn>
       <v-btn outlined @click="handleClickLogout"> Logout </v-btn>
     </div>
@@ -27,10 +28,11 @@
 import router from "@/router";
 import { useUserStore } from "@/store/useUserStore";
 import axios from "axios";
-import { ref } from "vue";
+
 
 const userStore = useUserStore();
-const isTeacher = ref(false);
+const isTeacher = userStore.user.authority;
+console.log(isTeacher);
 
 const handleClickAccount = () => {
   isTeacher ? router.push("/admin") : router.push("/mypage");
@@ -43,6 +45,7 @@ const handleClickLogout = async () => {
       method: "post",
     });
     userStore.resetUser();
+    router.push("/")
   } catch (error) {
     console.log(error);
   }

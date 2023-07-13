@@ -12,32 +12,27 @@
     <thead>
       <tr>
         <th class="text-center">No.</th>
-        <th class="text-center">Quiz Title</th>
+        <th class="text-center">Question</th>
         <th class="text-center">Created At</th>
-        <th class="text-center">Last Modified At</th>
-        <th class="text-center">Active</th>
-        <th class="text-center">Complete Status</th>
+        <th class="text-center">Modified At</th>
+        <th class="text-center">Status</th>
         <th class="text-center">Edit</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in 3" :key="item">
-        <td class="text-center">{{ item }}</td>
+      <tr v-for="(quiz,idx) in quizList" :key="quiz.id">
+        <td class="text-center">{{ idx + 1 }}</td>
         <td>
           {{
-            item === 1 &&
-            `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta
-          similique excepturi molestias quidem praesentium, blanditiis commodi
-          magni accusantium dignissimos quas. Similique repellat ratione
-          pariatur unde atque, dicta harum officiis sed.`
+            quiz.question
           }}
         </td>
-        <td class="text-center">{{ item }}</td>
-        <td class="text-center">{{ item }}</td>
-        <td class="text-center">{{ item }}</td>
-        <td class="text-center">{{ item }}</td>
-        <td class="text-center">
-          <v-btn @click="() => handleClickToEditQuiz(item)">Edit</v-btn>
+
+        <td class="text-center">{{ new Date(quiz.createdAt).toLocaleDateString() }}</td>
+        <td class="text-center">{{new Date( quiz.modifiedAt).toLocaleDateString()}}</td>
+        <td class="text-center">{{quiz.status}}</td>
+        <td align="center">
+          <v-btn @click="() => handleClickToEditQuiz(quiz.id)">Edit</v-btn>
         </td>
       </tr>
     </tbody>
@@ -46,6 +41,17 @@
 
 <script setup>
 import router from "@/router";
+import {onBeforeMount, ref} from "vue";
+import axios from "axios";
+
+const quizList = ref([]);
+
+onBeforeMount(async () => {
+  const { data } = await axios({
+    url: "http://localhost:8080/quizs",
+  });
+  quizList.value = data;
+});
 
 const handleClickToCreateQuiz = () => {
   router.push("/createAndEditQuiz");

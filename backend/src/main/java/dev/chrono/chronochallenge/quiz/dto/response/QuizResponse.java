@@ -5,6 +5,8 @@ import dev.chrono.chronochallenge.quiz.model.QuizStatus;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Date;
+
 @Getter
 public class QuizResponse {
 
@@ -17,9 +19,11 @@ public class QuizResponse {
     private String multipleCandidate4;
     private int point;
     private QuizStatus status;
+    private Date createdAt;
+    private Date modifiedAt;
 
     @Builder
-    public QuizResponse(Long id, String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, QuizStatus status) {
+    public QuizResponse(Long id,String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, QuizStatus status,Date createdAt,Date modifiedAt) {
         this.id = id;
         this.question = question;
         this.answer = answer;
@@ -29,6 +33,8 @@ public class QuizResponse {
         this.multipleCandidate4 = multipleCandidate4;
         this.point = point;
         this.status = status;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
     }
 
     public static QuizResponse From(Quiz quiz){
@@ -42,6 +48,8 @@ public class QuizResponse {
                 .multipleCandidate4(quiz.getMultipleCandidate4())
                 .point(quiz.getPoint())
                 .status(quiz.getStatus())
+                .createdAt(quiz.getCreatedAt())
+                .modifiedAt(quiz.getModifiedAt())
                 .build();
     }
 }
