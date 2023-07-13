@@ -1,0 +1,55 @@
+<template>
+  <ul>
+    <li v-for="quiz in quizList" :key="quiz.id">
+      <QuizCard
+        :setDialog="() => setDialog(quizList)"
+        :isComplete="false"
+        :quiz="quiz"
+      />
+    </li>
+  </ul>
+  <Modal :dialog="dialog" :setDialog="setDialog" :currentQuiz="currentQuiz" />
+</template>
+
+<script setup>
+import Modal from "@/components/Modal.vue";
+import { onBeforeMount, ref } from "vue";
+import QuizCard from "@/components/QuizCard.vue";
+import axios from "axios";
+
+const dialog = ref(false);
+const currentQuiz = ref(0);
+const quizList = ref([]);
+const setDialog = (item) => {
+  dialog.value = !dialog.value;
+  currentQuiz.value = quiz;
+};
+
+onBeforeMount(async () => {
+  const { data } = await axios({
+    url: "http://localhost:8080/quizs",
+  });
+  quizList.value = data;
+});
+</script>
+
+<style scoped>
+ul {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+.complete-quiz {
+  background: lightgray;
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+}
+</style>

@@ -24,8 +24,9 @@ public class AuthService {
          */
         String name = loginRequest.getName();
         String password = loginRequest.getPassword();
+
         Member member = memberRepository.findByNameAndPassword(name, password).orElseThrow(LoginFailedException::new);
-        return new AuthInfo(member.getId(),member.getName());
+        return new AuthInfo(member.getId(),member.getName(),member.isAuthority());
     }
 
     public MessageResponse loginCheck(HttpSession session) {
