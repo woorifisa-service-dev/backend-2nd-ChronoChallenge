@@ -29,7 +29,7 @@ onBeforeMount(async () => {
   const { data } = await axios({
     url: "http://localhost:8080/quizs",
   });
-  quizList.value = data;
+  quizList.value = data.filter((quiz) => quiz.status === "RESOLVED");
 });
 </script>
 
