@@ -13,9 +13,9 @@ import java.util.Date;
 
 
 @Getter
-@Entity
 @NoArgsConstructor
 @Table
+@Entity
 public class Quiz {
 
     @Id
@@ -24,13 +24,13 @@ public class Quiz {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member member;
+    private Member answerMember; // 정답을 맞춘 유저
 
     @Column
     private String question;
 
     @Column
-    private int answer;
+    private int answer; // 퀴즈에 대한 정답
 
     @Column(name="multiple_candidate1")
     private String multipleCandidate1;
@@ -58,11 +58,11 @@ public class Quiz {
     @Column(name = "modified_at")
     private Date modifiedAt;
 
-
     @Builder
-    public Quiz(Long id, Member member, String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, QuizStatus status, Date createdAt, Date modifiedAt) {
+    public Quiz(Long id, Member answerMember, String question, int answer,
+                String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, QuizStatus status, Date createdAt, Date modifiedAt) {
         this.id = id;
-        this.member = member;
+        this.answerMember = answerMember;
         this.question = question;
         this.answer = answer;
         this.multipleCandidate1 = multipleCandidate1;
@@ -84,5 +84,10 @@ public class Quiz {
         this.multipleCandidate4 = quizRequest.getMultipleCandidate4();
         this.point = quizRequest.getPoint();
         this.status = quizRequest.getStatus();
+    }
+
+    public void updateStatusAndAnswerMember(QuizStatus quizStatus, Member answerMember){
+        this.status = quizStatus;
+        this.answerMember = answerMember;
     }
 }
