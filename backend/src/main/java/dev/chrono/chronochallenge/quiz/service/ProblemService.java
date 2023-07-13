@@ -20,9 +20,9 @@ public class ProblemService {
         this.quizService = quizService;
     }
 
-    public int checkAnswer(Long quizId, AnswerRequest answerRequest) {
-        Quiz quiz = quizService.findById(quizId);
-        Member member = memberService.findById(answerRequest.getId());
+    public int checkAnswer(Long memberId, AnswerRequest answerRequest) {
+        Member member = memberService.findById(memberId);
+        Quiz quiz = quizService.findById(answerRequest.getId());
         int quizAnswer = quiz.getAnswer();
         int quizPoint = quiz.getPoint();
         int answer = 0;
