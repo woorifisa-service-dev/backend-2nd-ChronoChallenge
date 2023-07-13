@@ -1,6 +1,8 @@
 package dev.chrono.chronochallenge.quiz.service;
 
+import dev.chrono.chronochallenge.member.model.Member;
 import dev.chrono.chronochallenge.quiz.model.Quiz;
+import dev.chrono.chronochallenge.quiz.model.QuizStatus;
 import dev.chrono.chronochallenge.quiz.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,9 @@ public class QuizServiceImpl implements QuizService{
     @Override
     public void deleteById(Long id) {
         quizRepository.deleteById(id);
+    }
+
+    public void updateStatusAndAnswerMember(Quiz quiz, QuizStatus quizStatus, Member answerMember) {
+        quiz.updateStatusAndAnswerMember(quizStatus, answerMember);
     }
 }
