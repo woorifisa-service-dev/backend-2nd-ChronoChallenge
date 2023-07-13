@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 public class QuizResponse {
 
+    private Long id;
     private String question;
     private int answer;
     private String multipleCandidate1;
@@ -18,7 +19,8 @@ public class QuizResponse {
     private QuizStatus status;
 
     @Builder
-    public QuizResponse(String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, QuizStatus status) {
+    public QuizResponse(Long id, String question, int answer, String multipleCandidate1, String multipleCandidate2, String multipleCandidate3, String multipleCandidate4, int point, QuizStatus status) {
+        this.id = id;
         this.question = question;
         this.answer = answer;
         this.multipleCandidate1 = multipleCandidate1;
@@ -31,6 +33,7 @@ public class QuizResponse {
 
     public static QuizResponse From(Quiz quiz){
         return QuizResponse.builder()
+                .id(quiz.getId())
                 .question(quiz.getQuestion())
                 .answer(quiz.getAnswer())
                 .multipleCandidate1(quiz.getMultipleCandidate1())
