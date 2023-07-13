@@ -1,7 +1,7 @@
 package dev.chrono.chronochallenge.auth.service;
 
 import dev.chrono.chronochallenge.auth.dto.AuthInfo;
-import dev.chrono.chronochallenge.auth.dto.MessageResponse;
+import dev.chrono.chronochallenge.common.dto.MessageResponse;
 import dev.chrono.chronochallenge.auth.dto.request.LoginRequest;
 import dev.chrono.chronochallenge.auth.exception.LoginFailedException;
 import dev.chrono.chronochallenge.member.model.Member;
@@ -9,7 +9,6 @@ import dev.chrono.chronochallenge.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
 
 @Service
 public class AuthService {
