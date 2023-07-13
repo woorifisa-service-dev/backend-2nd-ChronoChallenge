@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 const initialUser = {
   id: 0,
   name: "",
+  authority:0
 };
 export const useUserStore = defineStore("user", {
   state: () => {
