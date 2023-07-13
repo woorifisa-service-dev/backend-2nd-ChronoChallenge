@@ -29,6 +29,11 @@ public class QuizServiceImpl implements QuizService{
     }
 
     @Override
+    public List<Quiz> findByStatus(QuizStatus quizStatus) {
+        return quizRepository.findByStatus(quizStatus);
+    }
+
+    @Override
     public Quiz save(Quiz quiz) {
         return quizRepository.save(quiz);
     }

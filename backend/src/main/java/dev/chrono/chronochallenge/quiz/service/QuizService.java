@@ -7,5 +7,4 @@ import dev.chrono.chronochallenge.quiz.model.QuizStatus;
 
 public interface QuizService extends CrudService<Quiz, Long> {
     void updateStatusAndAnswerMember(Quiz quiz, QuizStatus quizStatus, Member answerMember);
-
 }
