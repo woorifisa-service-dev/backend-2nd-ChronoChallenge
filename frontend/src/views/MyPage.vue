@@ -1,36 +1,38 @@
 <template>
   <section>
-    <h2>
-      {{userData.name}} 님 안녕하세요
-    </h2>
+    <h2>{{ userData.name }} 님 안녕하세요</h2>
     <ul class="info-list">
       <li>
         <h5>포인트</h5>
-        <p>{{userData.point}}</p>
+        <p>{{ userData.point }}</p>
       </li>
       <li>
         <h5>지각 면제권</h5>
-        <p>{{userData.passTicket}}</p>
+        <p>{{ userData.passTicket }}</p>
       </li>
     </ul>
   </section>
-
 </template>
 
 <script setup>
-import {useUserStore} from "@/store/useUserStore";
-import {onBeforeMount, ref} from "vue";
-import axios from "axios";
+import { useUserStore } from "@/store/useUserStore";
+import { onBeforeMount, ref } from "vue";
+import axiosInstance from "@/utils/axiosInstance";
+import { useCheckLogin } from "@/store/useCheckLogin";
+import router from "@/router";
 
-const userStore = useUserStore()
-const userData = ref({})
+const userStore = useUserStore();
+const isLogin = useCheckLogin();
+const userData = ref({});
 onBeforeMount(async () => {
-  const {data} = await axios({
-    url: `http://localhost:8080/member/${userStore.user.id}`,
-    method: "get"
-  })
-  userData.value = {...data}
-})
+  if (isLogin.code === 0) {
+    alert("로그인 상태가 아닙니다.");
+    router.push("/login");
+    return;
+  }
+  const { data } = await axiosInstance.get(`/member/${userStore.user.id}`);
+  userData.value = { ...data };
+});
 </script>
 
 <style scoped>
@@ -58,5 +60,4 @@ li + li {
 li h5 {
   font-size: 20px;
 }
-
 </style>

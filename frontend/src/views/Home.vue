@@ -22,7 +22,6 @@
 
 <script setup>
 import router from "@/router";
-import VueCookies from "vue-cookies";
 
 const handleClickGoQuiz = () => {
   router.push("/quiz");

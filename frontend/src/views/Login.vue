@@ -36,11 +36,14 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import axios, { AxiosError } from "axios";
+import axiosInstance from "@/utils/axiosInstance";
 import { useUserStore } from "@/store/useUserStore";
 
 import router from "@/router";
+import { AxiosError } from "axios";
+import { useCheckLogin } from "@/store/useCheckLogin";
 const userStore = useUserStore();
+const isLogin = useCheckLogin();
 const name = ref("");
 const password = ref("");
 const nameRules = [
@@ -56,17 +59,15 @@ const nameRules = [
 
 const handleClickLogin = async () => {
   try {
-    const { data } = await axios({
-      url: "http://localhost:8080/auth/login",
+    const { data } = await axiosInstance({
+      url: "/auth/login",
       method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
       data: JSON.stringify({
         name: name.value,
         password: password.value,
       }),
     });
+    isLogin.setIsLogin(1);
     userStore.setUser(data);
     router.push("/");
   } catch (error) {

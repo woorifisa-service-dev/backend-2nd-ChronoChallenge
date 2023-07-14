@@ -42,13 +42,16 @@
   </form>
 </template>
 <script setup>
-import {useField, useForm} from "vee-validate";
-import axios, {AxiosError} from "axios";
+import { useField, useForm } from "vee-validate";
+import axiosInstance from "@/utils/axiosInstance";
 import router from "@/router";
-import {onBeforeMount} from "vue";
+import { onBeforeMount } from "vue";
+import { AxiosError } from "axios";
 
-const {query: {id}} = router.currentRoute.value
-const {handleSubmit, handleReset} = useForm({
+const {
+  query: { id },
+} = router.currentRoute.value;
+const { handleSubmit, handleReset } = useForm({
   validationSchema: {
     question(value) {
       if (value?.length >= 2) return true;
@@ -67,7 +70,6 @@ const multipleCandidate = [
 ];
 const status = useField("status");
 
-
 // 퀴즈 저장
 const submit = handleSubmit(async (values) => {
   const checkNullValue = Object.values(values)
@@ -75,26 +77,23 @@ const submit = handleSubmit(async (values) => {
     .filter((v) => !v);
   if (checkNullValue.length > 0) {
     alert("필드를 다 채워주세요");
-    return
+    return;
   }
-  console.log("aaa")
 
   try {
-    await axios({
-      url: id ? `http://localhost:8080/quizs/${id}` : "http://localhost:8080/quizs/add",
+    await axiosInstance({
+      url: id ? `/quizs/${id}` : "/quizs/add",
       method: id ? "put" : "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
+
       data: JSON.stringify({
         question: values.question,
         answer: values.answer,
-        "multipleCandidate1": values.multipleCandidate1,
-        "multipleCandidate2": values.multipleCandidate2,
-        "multipleCandidate3": values.multipleCandidate3,
-        "multipleCandidate4": values.multipleCandidate4,
-        "point": values.point,
-        "status": values.status ? "SUBMIT" : "WAIT"
+        multipleCandidate1: values.multipleCandidate1,
+        multipleCandidate2: values.multipleCandidate2,
+        multipleCandidate3: values.multipleCandidate3,
+        multipleCandidate4: values.multipleCandidate4,
+        point: values.point,
+        status: values.status ? "SUBMIT" : "WAIT",
       }),
     });
     router.push("/admin");
@@ -108,25 +107,18 @@ const submit = handleSubmit(async (values) => {
 onBeforeMount(async () => {
   try {
     if (id) {
-
-      const {data} = await axios({
-        url: `http://localhost:8080/quizs/${id}`,
-        method: "get"
-      })
-      question.setValue(data.question)
-      answer.setValue(data.answer)
-      point.setValue(data.point)
-      multipleCandidate[0].setValue(data.multipleCandidate1)
-      multipleCandidate[1].setValue(data.multipleCandidate2)
-      multipleCandidate[2].setValue(data.multipleCandidate3)
-      multipleCandidate[3].setValue(data.multipleCandidate4)
-      status.setValue(data.status === "SUBMIT" ? true : false)
+      const { data } = await axiosInstance.get(`/quizs/${id}`);
+      question.setValue(data.question);
+      answer.setValue(data.answer);
+      point.setValue(data.point);
+      multipleCandidate[0].setValue(data.multipleCandidate1);
+      multipleCandidate[1].setValue(data.multipleCandidate2);
+      multipleCandidate[2].setValue(data.multipleCandidate3);
+      multipleCandidate[3].setValue(data.multipleCandidate4);
+      status.setValue(data.status === "SUBMIT" ? true : false);
     }
-
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
-
-
+});
 </script>

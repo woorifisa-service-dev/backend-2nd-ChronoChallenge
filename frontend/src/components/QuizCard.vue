@@ -6,8 +6,8 @@
     :class="{ 'complete-quiz': isComplete }"
   >
     <v-card-text>
-      <span> 📝 2023-07-12</span>
-      <span> 🪙 30 </span>
+      <span> 📝 {{ new Date(quiz.createdAt).toLocaleDateString() }}</span>
+      <span> 🪙 {{ quiz.point }} </span>
       <p class="text-h5 text--primary">{{ props.quiz.question }}</p>
     </v-card-text>
     <v-card-actions>
@@ -16,7 +16,7 @@
         color="deep-purple-accent-4"
         @click="props.setDialog"
       >
-        문제풀기
+        문제보기
       </v-btn>
     </v-card-actions>
   </v-card>

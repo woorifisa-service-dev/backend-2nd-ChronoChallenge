@@ -16,23 +16,41 @@
         <th class="text-center">Created At</th>
         <th class="text-center">Modified At</th>
         <th class="text-center">Status</th>
+        <th class="text-center">Answer Member</th>
         <th class="text-center">Edit</th>
+        <th class="text-center">Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(quiz,idx) in quizList" :key="quiz.id">
+      <tr v-for="(quiz, idx) in quizList" :key="quiz.id">
         <td class="text-center">{{ idx + 1 }}</td>
-        <td>
-          {{
-            quiz.question
-          }}
+        <td class="text-center">
+          {{ quiz.question }}
         </td>
 
-        <td class="text-center">{{ new Date(quiz.createdAt).toLocaleDateString() }}</td>
-        <td class="text-center">{{new Date( quiz.modifiedAt).toLocaleDateString()}}</td>
-        <td class="text-center">{{quiz.status}}</td>
+        <td class="text-center">
+          {{
+            new Date(quiz.createdAt).toLocaleDateString() +
+            " " +
+            new Date(quiz.createdAt).toLocaleTimeString()
+          }}
+        </td>
+        <td class="text-center">
+          {{
+            new Date(quiz.modifiedAt).toLocaleDateString() +
+            " " +
+            new Date(quiz.modifiedAt).toLocaleTimeString()
+          }}
+        </td>
+        <td class="text-center">{{ quiz.status }}</td>
+        <td class="text-center">
+          {{ quiz.answerMember ? quiz.answerMember.name : "" }}
+        </td>
         <td align="center">
           <v-btn @click="() => handleClickToEditQuiz(quiz.id)">Edit</v-btn>
+        </td>
+        <td align="center">
+          <v-btn @click="() => handleClickToDeleteQuiz(quiz.id)">Delete</v-btn>
         </td>
       </tr>
     </tbody>
@@ -41,16 +59,17 @@
 
 <script setup>
 import router from "@/router";
-import {onBeforeMount, ref} from "vue";
-import axios from "axios";
+import { onBeforeMount, ref } from "vue";
+import axiosInstance from "@/utils/axiosInstance";
 
 const quizList = ref([]);
+const getQuizList = async () => {
+  const { data } = await axiosInstance.get("/quizs");
+  quizList.value = data;
+};
 
 onBeforeMount(async () => {
-  const { data } = await axios({
-    url: "http://localhost:8080/quizs",
-  });
-  quizList.value = data;
+  await getQuizList();
 });
 
 const handleClickToCreateQuiz = () => {
@@ -63,6 +82,14 @@ const handleClickToEditQuiz = (id) => {
       id,
     },
   });
+};
+const handleClickToDeleteQuiz = async (id) => {
+  try {
+    await axiosInstance.delete(`/quizs/${id}`);
+    await getQuizList();
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 

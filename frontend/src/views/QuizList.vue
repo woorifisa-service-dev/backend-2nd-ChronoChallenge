@@ -2,7 +2,7 @@
   <ul>
     <li v-for="quiz in quizList" :key="quiz.id">
       <QuizCard
-        :setDialog="() => setDialog(quizList)"
+        :setDialog="() => setDialog(quiz)"
         :isComplete="false"
         :quiz="quiz"
       />
@@ -15,20 +15,18 @@
 import Modal from "@/components/Modal.vue";
 import { onBeforeMount, ref } from "vue";
 import QuizCard from "@/components/QuizCard.vue";
-import axios from "axios";
+import axiosInstance from "@/utils/axiosInstance";
 
 const dialog = ref(false);
 const currentQuiz = ref(0);
 const quizList = ref([]);
-const setDialog = (item) => {
+const setDialog = (quiz) => {
   dialog.value = !dialog.value;
   currentQuiz.value = quiz;
 };
 
 onBeforeMount(async () => {
-  const { data } = await axios({
-    url: "http://localhost:8080/quizs",
-  });
+  const { data } = await axiosInstance.get("/quizs");
   quizList.value = data.filter((quiz) => quiz.status === "RESOLVED");
 });
 </script>

@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 const initialUser = {
   id: 0,
   name: "",
-  authority:0
+  authority: false,
 };
 export const useUserStore = defineStore("user", {
   state: () => {
@@ -14,9 +14,6 @@ export const useUserStore = defineStore("user", {
   actions: {
     setUser(userData) {
       this.user = userData;
-    },
-    resetUser() {
-      this.user = { ...initialUser };
     },
   },
   persist: {

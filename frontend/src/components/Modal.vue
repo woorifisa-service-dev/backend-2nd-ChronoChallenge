@@ -16,20 +16,23 @@
         </v-toolbar>
 
         <v-divider></v-divider>
-        <v-form>
-          <v-radio-group v-model="radios">
-            <template v-slot:label>
-              <div class="quiz-title">
-                {{ props.currentQuiz }} 다형성에 대해 틀린 것을 고르시오
-              </div>
-            </template>
-            <v-radio :value="item" v-for="item in 4" :key="item">
-              <template v-slot:label>
-                <div>{{ item }} 객체지향 어쩌고 저쩌고</div>
-              </template>
-            </v-radio>
-          </v-radio-group>
-        </v-form>
+        <form>
+          <div v-for="(multiple, idx) in 4" :key="idx" class="answer-list">
+            <input
+              type="radio"
+              :value="idx"
+              name="multiple"
+              :id="idx"
+              :checked="idx + 1 == props.currentQuiz.answer ? true : false"
+              disabled
+            />
+            <label :for="idx">{{
+              props.currentQuiz[`multipleCandidate${idx + 1}`]
+            }}</label>
+          </div>
+        </form>
+        <v-divider></v-divider>
+        <p class="answer">정답: {{ props.currentQuiz.answer }} 번</p>
       </v-card>
     </v-dialog>
   </v-row>
@@ -41,9 +44,8 @@ import { ref } from "vue";
 const props = defineProps({
   dialog: Boolean,
   setDialog: Function,
-  currentQuiz: Number,
+  currentQuiz: Object,
 });
-const radios = ref("");
 </script>
 
 <style scoped>
@@ -51,5 +53,19 @@ const radios = ref("");
   color: #000;
   font-size: 20px;
   font-weight: bold;
+}
+.answer {
+  padding: 20px 10px;
+}
+input:disabled {
+  color: #000;
+  border-color: darkblue;
+}
+form {
+  padding: 0 10px;
+}
+.answer-list {
+  display: flex;
+  gap: 10px;
 }
 </style>
