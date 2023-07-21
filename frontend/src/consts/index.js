@@ -1,1 +1,1 @@
-export const BASE_URL = import.meta.env.VITE_BASE_URL;
+export const BASE_URL = "13.209.188.121";
